@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+    {% block custom_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tables.css')}}">
+    {% endblock custom_css %}
+
+{% block body %}
+
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <img id='image' src="{{url_for('static',filename='images/image_2022_04_11T10_26_09_338Z.png')}}">
+      <!-- <h3 class="srv-name"><strong>Server 1</strong></h3>
+      <h3 class="usr-name"><strong>User 1</strong></h3> -->
+      <ul>
+        <li><a href="#">LOGOUT</a></li>
+      </ul>
+    </nav>
+    <div class="table-header">
+    <table>
+
+
+      <tr>
+        {% for header in headers %}
+          <th class="table-headers" style="color: rgb(0, 82, 150); font-family: Century Gothic;">{{ header }}</th>
+        {% endfor %}
+        <th style="color: rgb(0, 82, 150); font-family: Century Gothic;">Process</th>
+      </tr>
+
+
+      {% for row in data %}
+        <tr id="row">
+          <td class="table-rows">{{ loop.index }}</td>
+          {% for cell in row %}
+            <td id= {{ loop.index }} class="table-rows" style="color: rgb(0, 0, 0);" >{{ cell }}</td>
+          {% endfor %}
+          <td class="sub-btn" ><button type="button" class="btn btn-primary btn-sm"  >Start</button></td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+  
+
+
+{% endblock body %} 
