@@ -22,18 +22,20 @@
       </ul>
     </nav>
     <div class="table-header">
-    <table>
+    <table id="row-data">
 
-
+      <thead>
       <tr>
         {% for header in headers %}
           <th class="table-headers" style="color: rgb(0, 82, 150); font-family: Century Gothic;">{{ header }}</th>
         {% endfor %}
         <th style="color: rgb(0, 82, 150); font-family: Century Gothic;">Process</th>
       </tr>
+      </thead>
 
 
       {% for row in data %}
+      <tbody>
         <tr id="row">
           <td class="table-rows">{{ loop.index }}</td>
           {% for cell in row %}
@@ -41,10 +43,30 @@
           {% endfor %}
           <td class="sub-btn" ><button type="button" class="btn btn-primary btn-sm"  >Start</button></td>
         </tr>
+        </tbody>
       {% endfor %}
     </table>
     </div>
-  
+  <script>
+    init()
+    function init(){
+        addRowHandlers('row-data');
+    }
+    function addRowHandlers(tableId) {
+        if(document.getElementById(tableId)!=null){
+            var table = document.getElementById(tableId);
+            var rows = table.getElementsByTagName('tr');
+            var id = '';
+            for ( var i = 1; i < rows.length; i++) {
+                rows[i].i = i;
+              rows[i].onclick=function data() {
+                    id = table.rows[this.i].cells[0].innerHTML;                
+                    alert('id is: '+id);
+                  };
+              }
+          }
+      }   
+  </script
 
 
 {% endblock body %} 
