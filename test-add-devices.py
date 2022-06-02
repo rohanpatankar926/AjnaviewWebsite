@@ -12,7 +12,7 @@ import string
 
 baseUrl = 'http://localhost:8082'
 user = { 'email' : 'admin', 'password' : 'admin' }
-debug = '-v' in sys.argvvehicle 1 	online 	13322 	3
+debug = '-v' in sys.argv
 def login():
     request = urllib.request.Request(baseUrl + '/api/session')
     response = urllib.request.urlopen(request, urllib.parse.urlencode(user).encode("utf-8"))
